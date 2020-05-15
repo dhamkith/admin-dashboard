@@ -1,0 +1,209 @@
+@media screen and (min-width: 769px), print {} /*  end of min-width: 769px */
+@media screen and (min-width: 1088px), print {} /*  end of min-width: 1088px */
+@media screen and (max-width: 1023px), print {
+  // .toggle-mobile-hidden {
+
+  // }
+  .container.is-fluid.remove-padding {
+    padding-left: 15px;
+    padding-right: 0;
+  }
+  .is-media-margin-l {
+    margin-left: 15px;
+  }
+  /*
+  * ---------------------------
+  * aside-backgrond
+  * ---------------------------
+  */
+  .aside-backgrond {
+     display: none!important;
+     position: absolute!important;
+     top: 40px!important;
+     left: -999rem!important;
+     z-index: 29;
+     min-height: 100vh;
+     height: 100%;
+     min-width: 0px!important;
+     width: 0px!important;
+     background-color: transparent;
+     -moz-transition: all 0.3s ease;
+     -ms-transition: all 0.3s ease;
+     -o-transition: all 0.3s ease;
+     -webkit-transition: all 0.3s ease;
+     transition: all 0.3s ease;  
+    animation: slide-in ease-out 0.3s forwards; 
+    .aside-menu {
+      width: 298px;
+      min-height: 100vh!important;
+      overflow-y: scroll;
+      background-color: $aside_background;
+      .aside-mobile-close {
+        display: block;
+      }
+      ul.menu-list {
+          a { 
+              &:hover {
+                  background: transparent; 
+                  color: $primary;
+              }
+              span {
+                display: inline-block!important;
+                max-width: 99.99999%;
+              }
+              span.aside-compress {
+                 // not use
+              }
+          }
+          ul {
+            max-height: 0;
+            overflow: hidden;
+            -moz-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+            -ms-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+            -o-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+            -webkit-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+            transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+          }
+          ul.toggle--on {
+            display: block;
+            overflow: hidden; 
+            max-height: 200px;
+            transition: all .618s ease-in-out;
+        }
+      }
+    }
+  }
+  .aside-backgrond.aside-open-mobile {
+    display: block!important;
+    left: -.75rem!important;
+    min-width: 298px!important;
+    width: 298px!important;
+    animation: slideInLeft ease-out 0.3s forwards;
+    .aside-menu {
+      //margin-top: 0.75rem;
+    }
+  }
+
+
+  /*
+  * back-end navbar mobile dark-color
+  *
+  */
+  .navbar {
+    div {
+      position: relative;
+       /*
+      * back-end navbar mobile dark-color
+      *
+      */
+      .navbar-menu.back-end {
+        background-color: $aside_background;
+        min-width: 298px!important;
+        width: 298px!important;
+        position: absolute;
+        right: 0;
+        min-height: 100vh;
+        height: 100%;
+        overflow-y: scroll;
+        animation: slideInRight ease-out 0.3s forwards;
+        .navbar-start {
+          .navbar-item {
+            display: block;
+            width: 100%;
+            // background-color: $aside_background;
+            // @include transition-all(all, 0.3s, ease-in-out);
+            &:hover {
+              background-color: transparent;
+              color: $primary!important;
+            }   
+          }
+          .navbar-item.is-tab {
+            border-bottom: 0;
+          }
+          div.has-dropdown {
+              display: block;
+              width: 100%;
+            .navbar-link {
+              display: block;
+              width: 100%;
+              // background-color: $aside_background;
+              // @include transition-all(all, 0.3s, ease-in-out); 
+              &:hover {
+                color: $primary;
+              }
+              img {}
+            }
+            .navbar-dropdown {
+              display: none;
+              width: 100%;
+              background-color: $aside_background_submenu;
+              opacity: 0;
+              pointer-events: none; 
+              // .navbar-item { 
+              //   color: $link;  
+              // }
+            }
+            .navbar-dropdown.is-clickeble {
+              opacity: 1;
+              pointer-events: visible;
+              display: block;
+            }
+          }
+        }
+        .navbar-end {
+          div {
+            div.buttons {
+              .navbar-item {
+                display: block;
+                width: 100%;
+                // background-color: $aside_background;
+                // @include transition-all(all, 0.3s, ease-in-out);
+                &:hover {
+                  background-color: transparent;
+                  color: $primary!important;
+                }   
+              }
+              .navbar-item.is-tab {
+                border-bottom: 0;
+              }
+              div.has-dropdown {
+                  display: block;
+                  width: 100%; 
+                  color: $primary !important;
+                .navbar-link {
+                  display: block;
+                  width: 100%; 
+                  // background-color: $aside_background;
+                  // @include transition-all(all, 0.3s, ease-in-out);
+                  &:hover {
+                    color: $primary;
+                  }
+                  img {}
+                  &::after {
+                    border-color: $white !important;
+                  }
+                }
+                .navbar-dropdown {
+                  display: none;
+                  width: 100%;
+                  background-color: $aside_background_submenu;
+                  opacity: 0;
+                  pointer-events: none;
+                  @include transition-all(all, 0.3s, ease-in-out);
+                }
+                .navbar-dropdown.is-clickeble {
+                  opacity: 1;
+                  pointer-events: visible;
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+} /*  end of max-width: 1087px */
+@media screen and (max-width: 768px), print {} /*  end of max-width: 768px */
+@media screen and (max-width: 575.98px), print {} /*  max-width: 575.98px */

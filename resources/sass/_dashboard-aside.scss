@@ -1,0 +1,124 @@
+.aside-backgrond {
+  background-color: $aside_background;
+  // max-width: 80px;
+  // width: 80px; 
+  padding-right: 0;
+  .menu {
+      //background: $aside_background;
+  }
+}
+
+.aside-menu { 
+  min-height: 100vh;
+  -webkit-overflow-scrolling:touch;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: .75rem;
+  bottom:0;
+  @include transition-all(all, 0.3s, ease-in-out); 
+  .aside-mobile-close {
+    display: none;
+  }
+  ul.menu-list {
+      a { 
+          min-height: 2.76rem;
+          line-height: 1.61rem; 
+          border-radius: 0;
+          background: transparent;
+          font-weight: 300;
+          color: $link;
+          border-bottom: 1px solid $aside-border-color; 
+          position: relative;
+          &:hover {
+              background: transparent; 
+              color: $primary; 
+          }
+          span { 
+            max-width: 100%;
+            display: inline-block;
+          }
+          // span.aside-compress { 
+          //     max-width: 100%;
+          //     display: inline-block;
+          // }
+          .fa {
+            padding-right: 10px;
+          }
+          .fa.fa-compress,
+          .fa.fa-expand {
+            position: absolute;
+            top: .3rem;
+            right: .3rem;
+            font-size: .9em;
+          }
+          .dadge-lable {
+            position: absolute;
+            top: 0.382rem;
+            right: 0.382rem;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            background-color:orangered;
+            color: $white;
+            width: 1rem;
+            height: 1rem;
+            padding: 0.382rem;
+            font-size: 0.7em;
+            border-radius: 290486px;
+          }
+      }
+      a.has-submenu.open {
+        background: $primary; 
+        color: $white;
+      }
+      ul {
+          display: block;
+          border-left: 1px solid $primary; 
+          background: $aside_background_submenu;
+          margin: 0;
+          max-height: 0;
+          overflow: hidden;
+          -moz-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+          -ms-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+          -o-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+          -webkit-transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+          transition: all 0.338s cubic-bezier(0, 1, 0, 1);
+          li {
+              a {
+                min-height: 2.61rem;
+                line-height: 1.61rem;
+                background: transparent;
+                border-bottom: none; 
+                .dadge-lable {
+                  position: absolute;
+                  top: 0.382rem;
+                  right: 0.382rem;
+                  align-items: center;
+                  display: flex;
+                  justify-content: center;
+                  background-color:orangered;
+                  color: $white;
+                  width: 1rem;
+                  height: 1rem;
+                  padding: 0.382rem;
+                  font-size: 0.7em;
+                  border-radius: 290486px;
+                }
+                &:hover {
+                  background: transparent;
+                  color: $primary;
+                }
+              }
+          }
+      }
+      ul.is-submenu-open.toggle--on {
+        display: block;
+        overflow: hidden; 
+        max-height: 200px;
+        transition: all .618s ease-in-out;
+      }
+  }
+}
+

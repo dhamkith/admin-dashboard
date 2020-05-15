@@ -1,0 +1,46 @@
+@mixin transition-all($property, $duration, $timing-function) {
+  -moz-transition: $property $duration $timing-function;
+  -ms-transition: $property $duration $timing-function;
+  -o-transition: $property $duration $timing-function;
+  -webkit-transition: $property $duration $timing-function;
+  transition: $property $duration $timing-function;
+} 
+
+@mixin animation($name, $duration){
+  -moz-animation: $name $duration ease-in-out 0s 1 alternate forwards;
+  -ms-animation: $name $duration ease-in-out 0s 1 alternate forwards;
+  -o-animation: $name $duration ease-in-out 0s 1 alternate forwards;
+  -webkit-animation: $duration ease-in-out 0s 1 alternate forwards;
+  animation: $name $duration ease-in-out 0s 1 alternate forwards;
+} 
+  
+@mixin animation-withoption($name, $duration, $timing, $delar, $iteration){
+  -moz-animation: $name $duration $timing $delar $iteration normal forwards;
+  -ms-animation: $name $duration $timing $delar $iteration normal forwards;
+  -o-animation: $name $duration $timing $delar $iteration normal forwards;
+  -webkit-animation: $duration $timing $delar $iteration normal forwards;
+  animation: $name $duration $timing $delar $iteration normal forwards;
+}
+
+
+$spaceamounts: ( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30, 35, 40, 45, 50, 52, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+  .m-#{$space}{
+    margin: #{$space}px !important;
+  }
+  .p-#{$space}{
+    margin: #{$space}px !important;
+  }
+  
+}
