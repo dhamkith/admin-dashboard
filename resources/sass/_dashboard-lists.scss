@@ -19,6 +19,7 @@
    }
   .list-body {
     .list-wrapper {
+      position: relative;
       display: flex;
       width: 100%;
       background-color: white;
@@ -28,31 +29,35 @@
       i.fa {
         margin-right: 6px;
       }
-      i.fa.fa-image.notifi-color, i.fa.fa-user.notifi-color, i.fa.fa-envelope-open.envelope-color, i.fa.fa-paper-plane.plane-color  {
-        //color: $link;
+      i.notifi-icon {
+        position: absolute;
+        top: 16px;
+
+      }
+      i.fa.fa-image.notifi-colorread, i.fa.fa-user.notifi-colorread, i.fa.fa-envelope-open.envelope-colorread, i.fa.fa-paper-plane.paper-plane-colorread  {
+        color: $link;
       }
       i.fa.fa-image.notifi-colorunread {
-        //color: $notifi-unread; 
+        color: $notifi-unread; 
       } 
       i.fa.fa-user.notifi-colorunread {
-        //color: $notifi-user-unread; 
+        color: $notifi-user-unread; 
       } 
       i.fa.fa-envelope.envelope-colorunread {
-        //color: $notifi-unread; 
+        color: $notifi-unread; 
       }
       i.fa.fa-paper-plane.plane-colorunread {
-        //color: $notifi-unread; 
+        color: $notifi-unread; 
       }  
       input.list-show {
         margin-right: .75rem;
       }
       i.fa.fa-user.online--user {
-        //color: $online; 
+        color: $online; 
         font-size: 1.2em !important;
       }
       i.fa.fa-user.ofline--user {
-        
-        //color: $ofline; 
+        color: $ofline; 
       }
       a.list {
         display: flex;
@@ -78,6 +83,10 @@
   .pagination-wrapp {
     margin-top: 3rem;
   }
+}
+
+.box-back-color {
+  background-color: white;
 }
 
 .box-shadow {

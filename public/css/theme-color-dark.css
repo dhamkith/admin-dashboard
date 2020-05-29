@@ -1,0 +1,210 @@
+.admin-contant {
+  background-color: #121220;
+}
+
+/* file dashboard-content.scss colors overwright */
+
+/* dashboard action-box */
+
+.action-box .action-wrapper {
+  background-color: #161627;
+  color: #9b9b9be8;
+}
+
+.action-box .action-wrapper .action-header .action-header-title {
+  color: #9b9b9be8;
+}
+
+.action-box .action-wrapper .action-header .action-header-icon {
+  color: #9b9b9be8;
+}
+
+.action-box .action-wrapper .action-header .action-header-icon:hover {
+  color: #0084ff;
+}
+
+.action-box .action-wrapper .action-content .content .content-list {
+  background-color: #141424;
+}
+
+.action-box .action-wrapper .action-content .content .content-list a.show-url {
+  color: #9b9b9be8;
+}
+
+.action-box .action-wrapper .action-content .content .content-list a.show-url:hover {
+  color: #0084ff;
+}
+
+.action-box .action-wrapper .action-content .content .content-list .dadge-lable {
+  background-color: orangered;
+  color: #ffffff;
+}
+
+.action-box .action-wrapper .action-content .content .content-list .user-pic {
+  border: 6px solid #ffffff;
+}
+
+.action-box .action-wrapper .action-content .content .content-list .list-label {
+  background-color: #141424;
+}
+
+.action-box .action-wrapper .action-content .content .content-list .social a:hover {
+  color: #0084ff;
+}
+
+.action-box .action-wrapper .action-dropdown {
+  background-color: #ffffff;
+}
+
+.action-box .action-wrapper .action-dropdown a {
+  color: #9b9b9be8;
+}
+
+.action-box .action-wrapper .action-dropdown a:hover {
+  color: #0084ff;
+  border-bottom: 2px solid #0084ff;
+}
+
+/* file _dashboard-lists colors overwright */
+
+.lists-wrapper .list-header {
+  background-color: #161627;
+  border-bottom: 1px solid #272c3b;
+  border-top: 1px solid #272c3b;
+}
+
+.lists-wrapper .list-header .header-col strong {
+  color: #9b9b9be8;
+}
+
+.lists-wrapper .list-body .list-wrapper {
+  background-color: #161627;
+  border-bottom: 1px solid #272c3b;
+}
+
+.lists-wrapper .list-body .list-wrapper i.fa.fa-image.notifi-colorread,
+.lists-wrapper .list-body .list-wrapper i.fa.fa-user.notifi-colorread,
+.lists-wrapper .list-body .list-wrapper i.fa.fa-envelope-open.envelope-colorread,
+.lists-wrapper .list-body .list-wrapper i.fa.fa-paper-plane.paper-plane-colorread {
+  color: #353c4e;
+}
+
+.lists-wrapper .list-body .list-wrapper i.fa.fa-image.notifi-colorunread {
+  color: rgba(6, 193, 53, 0.911);
+}
+
+.lists-wrapper .list-body .list-wrapper i.fa.fa-user.notifi-colorunread {
+  color: rgba(13, 84, 217, 0.911);
+}
+
+.lists-wrapper .list-body .list-wrapper i.fa.fa-envelope.envelope-colorunread {
+  color: rgba(6, 193, 53, 0.911);
+}
+
+.lists-wrapper .list-body .list-wrapper i.fa.fa-paper-plane.paper-plane-colorunread {
+  color: rgba(6, 193, 53, 0.911);
+}
+
+.lists-wrapper .list-body .list-wrapper a.list {
+  background-color: transparent;
+}
+
+.lists-wrapper .list-body .list-wrapper a.list.unread {
+  color: #9b9b9be8;
+}
+
+.lists-wrapper .list-body .list-wrapper a.list.read {
+  color: #353c4e;
+}
+
+.box-back-color {
+  background-color: #161627;
+  color: #9b9b9be8;
+}
+
+.box-back-color a {
+  color: #0084ff;
+}
+
+.box-back-color a:hover {
+  color: #9b9b9be8;
+}
+
+.message-view {
+  color: #9b9b9be8;
+}
+
+.user-online {
+  color: #1de71d;
+}
+
+.user-ofline {
+  color: #c8c9c9;
+}
+
+/* file _dashboard-settings.scss colors overwright */
+
+.admin-setting .admin-setting-wrap .field.header {
+  background-color: #161627;
+  border-bottom: 1px solid #272c3b;
+}
+
+.admin-setting .admin-setting-wrap .field.header .title {
+  color: #9b9b9be8;
+}
+
+.admin-setting .admin-setting-wrap .field.body.is-admin-setting-expand .field .user-pic {
+  border: 1px solid rgba(255, 255, 255, 0.98);
+}
+
+.admin-setting .admin-setting-wrap .field.body.is-admin-setting-expand.toggle-open {
+  background-color: #141424;
+}
+
+/* bulma overwrite */
+
+strong,
+.label,
+.radio:hover,
+.checkbox:hover {
+  color: #9b9b9be8;
+}
+
+.input,
+.textarea,
+select,
+.input[disabled],
+fieldset[disabled] .input,
+.textarea[disabled],
+fieldset[disabled] .textarea {
+  background-color: #161627 !important;
+  color: #9b9b9be8 !important;
+  border-color: #272c3b !important;
+}
+
+.checkbox-wrapper .slide {
+  background-color: #161627;
+}
+
+.checkbox-wrapper .slide:before {
+  color: #0084ff;
+}
+
+.checkbox-wrapper .slide input[type=checkbox]:checked + label {
+  background-color: #0084ff;
+}
+
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+  color: #272c3b;
+}
+
+@media screen and (max-width: 1023px), print {
+  body {
+    min-height: calc(100vh + 12px);
+    background-color: #141424;
+  }
+}
+
+/*  end of max-width: 1087px */
+

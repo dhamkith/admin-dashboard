@@ -5,18 +5,24 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Traits\ContactUsTrait;
+use App\Traits\AdminSendMsgTrait;
+use App\Traits\UserSendMsgTrait;
+use App\Traits\SettingTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-
-    /**
+    use Notifiable, ContactUsTrait;
+    use AdminSendMsgTrait, UserSendMsgTrait; 
+    use SettingTrait;
+ 
+    /*
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'banned_until', 'last_login_ip',
     ];
 
     /**
@@ -36,4 +42,60 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+ 
+    /*
+     * for Carbon manipulations.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'banned_until',
+    ];
+
+    /*
+    * Get the profile record associated with the User.
+    */
+    public function profile()
+    {
+        return $this->hasOne('App\Profile');
+    }
+
+    /*
+    *  roles.
+    *
+    * @var array
+    */
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'role_user'); //morphToMany belongsToMany hasMany
+    }
+   
+    /*
+     *  hasPermission.
+     *
+     * @var 
+     */
+    public function hasPermission(Permission $permission)
+    {
+        return $this->hasAnyRoles($permission->roles);
+    }
+
+     /*
+     *  hasAnyRoles.
+     *
+     * @var 
+     */
+    public function hasAnyRoles($roles)
+    {
+        if(is_array($roles) || is_object($roles)){
+            
+            foreach($roles as $role){
+                return $roles->intersect($this->roles)->count();
+            }
+        }
+        return $this->roles->contains('slug', $roles);
+
+    }
+ 
 }

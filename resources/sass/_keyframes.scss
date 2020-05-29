@@ -33,3 +33,17 @@
     transform: translateY(0);
   }
 } 
+
+@keyframes slideDown {
+  0% { transform:  translateY(-300%); }
+  to { transform:translateX(0%);}
+}
+
+// .modal-card {
+//   transform: translateY(-150%)
+// } 
+
+
+.modal-card.slide-down {
+  @include animation(slideDown, 0.338s);
+}

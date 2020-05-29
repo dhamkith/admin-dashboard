@@ -1,0 +1,283 @@
+
+$background:#161627;
+$background-darker:#141424;
+$background-submenu:#121220;
+$primary: #0084ff;
+$borderColor: #272c3b;
+$textColor: #9b9b9be8;
+
+$dropdownlinkcolor: #4a4a4a;
+$labelcolor: #8e9195;
+$white: #ffffff;
+
+// icon
+$readColor: #353c4e;
+$notifi-unread: hsla(135, 94%, 39%, 0.911);
+$notifi-user-unread: hsla(219, 89%, 45%, 0.911);
+
+
+.admin-contant {
+  background-color: $background-submenu; 
+}
+
+/* file dashboard-content.scss colors overwright */
+
+/* dashboard action-box */
+.action-box { 
+  .action-wrapper {  
+    background-color: $background; 
+    color: $textColor; 
+    .action-header { 
+      .action-header-title { 
+        color: $textColor; 
+      }
+      .action-header-icon { 
+        color: $textColor; 
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+    .action-content { 
+      .content {
+        .content-list { 
+          background-color: $background-darker;
+          a.show-url { 
+            color: $textColor; 
+            &:hover {
+              color: $primary;
+            }
+          }
+          .dadge-lable { 
+            background-color: orangered;
+            color: $white; 
+          }
+          .user-pic { 
+            border: 6px solid $white; 
+          }
+          .user-datils { 
+            .is-online { 
+            }
+          }
+          .list-label {
+            background-color: $background-darker; 
+          }
+          .social { 
+            a {
+              .fa { 
+              }
+              &:hover {
+                color: $primary;
+              }
+            }
+          }
+        }
+      }
+    }
+    .action-dropdown { 
+      background-color: $white; 
+      a { 
+        color: $textColor; 
+        &:hover { 
+          color: $primary;
+          border-bottom: 2px solid $primary; 
+        }
+      }
+    }
+    .action-dropdown.action-active { 
+    }
+  }
+}
+
+
+/* file _dashboard-lists colors overwright */
+
+
+.lists-wrapper { 
+  .list-header { 
+      background-color: $background; 
+      border-bottom: 1px solid $borderColor; 
+      border-top: 1px solid $borderColor;
+     .header-col {  
+       strong { 
+        color: $textColor;
+       }
+      input#all-users { 
+      } 
+    } 
+   }
+  .list-body {
+    .list-wrapper { 
+      background-color: $background;
+      border-bottom: 1px solid $borderColor; 
+      i.fa { 
+      }
+      i.notifi-icon { 
+      }
+      i.fa.fa-image.notifi-colorread, i.fa.fa-user.notifi-colorread, i.fa.fa-envelope-open.envelope-colorread, i.fa.fa-paper-plane.paper-plane-colorread  {
+        color: $readColor; 
+      }
+      i.fa.fa-image.notifi-colorunread {
+        color: $notifi-unread; 
+      } 
+      i.fa.fa-user.notifi-colorunread {
+        color: $notifi-user-unread; 
+      } 
+      i.fa.fa-envelope.envelope-colorunread {
+        color: $notifi-unread; 
+      }
+      i.fa.fa-paper-plane.paper-plane-colorunread {
+        color: $notifi-unread; 
+      }  
+      input.list-show { 
+      }
+      i.fa.fa-user.online--user {
+        // color: $online;  
+      }
+      i.fa.fa-user.ofline--user {
+        // color: $ofline; 
+      }
+      a.list { 
+        background-color: transparent;
+      }
+      a.list.unread { 
+        color: $textColor;
+      }
+      a.list.read { 
+        color: $readColor; 
+      }
+      input.list-show { 
+      }
+      a.list { 
+      }
+    }
+  } 
+}
+
+.box-back-color {
+  background-color: $background; 
+  color: $textColor;
+  a {
+    color: $primary;
+    &:hover {
+      color: $textColor;
+    } 
+  }
+}
+
+.message-view {
+  color: $textColor;
+}
+
+.user-online {  
+  color: rgb(29, 231, 29);
+}
+.user-ofline {
+  color: rgb(200, 201, 201);
+}
+
+
+/* file _dashboard-settings.scss colors overwright */
+
+
+.admin-setting {
+  .admin-setting-wrap {
+    .field.header{ 
+        background-color: $background; 
+        border-bottom: 1px solid $borderColor;
+        .title { 
+          color: $textColor;
+          .fa { 
+          }
+        }
+        &:focus {
+          
+        }
+    }
+    .field.body.is-admin-setting-expand {  
+        .field {
+          .user-pic { 
+            border: 1px solid rgba(255, 255, 255, 0.98); 
+          }
+          .user-pic.border-round {  
+          }
+        } 
+    }
+    .field.body.is-admin-setting-expand.toggle-open {  
+      background-color: $background-darker; 
+    }
+  }
+}
+
+ 
+/* bulma overwrite */
+
+strong,
+.label,
+.radio:hover,
+.checkbox:hover {
+  color:  $textColor; 
+} 
+
+.input,
+.textarea,
+select,
+.input[disabled],
+fieldset[disabled] .input, 
+.textarea[disabled],
+fieldset[disabled] .textarea {
+  background-color: $background !important;
+  color:  $textColor !important;
+  border-color:  $borderColor !important;
+  &:hover {
+
+  }
+}
+
+// .input.is-primary,
+// .textarea.is-primary {
+//   border-color: $primary;
+// }
+
+// .input.is-primary:focus,
+// .input.is-primary.is-focused,
+// .input.is-primary:active,
+// .input.is-primary.is-active,
+// .textarea.is-primary:focus,
+// .textarea.is-primary.is-focused,
+// .textarea.is-primary:active,
+// .textarea.is-primary.is-active {
+//   //box-shadow: 0 0 0 0.125em rgb(255, 51, 0, .25);
+// }
+
+// .button.is-primary[disabled],
+// .button.is-primary {
+//   background-color: $primary; 
+//   &:hover,
+//   &:focus {
+//     background-color: $primary; 
+//   }
+// }
+
+.checkbox-wrapper {
+  .slide {
+    background-color:  $background;
+    &:before { 
+      color: $primary; 
+    }
+    input[type="checkbox"]:checked + label {
+      background-color: $primary;
+    }
+  }
+}
+
+.control.has-icons-left .icon, .control.has-icons-right .icon {
+  color: $borderColor;
+}
+
+@media screen and (max-width: 1023px), print {
+  body { 
+    min-height: calc(100vh + 12px);
+    background-color: $background-darker; 
+  }   
+} /*  end of max-width: 1087px */

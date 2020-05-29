@@ -1,15 +1,44 @@
 @media screen and (min-width: 769px), print {} /*  end of min-width: 769px */
 @media screen and (min-width: 1088px), print {} /*  end of min-width: 1088px */
 @media screen and (max-width: 1023px), print {
-  // .toggle-mobile-hidden {
-
-  // }
+  body { 
+    min-height: calc(100vh + 12px);
+    background-color: $aside_background_submenu; 
+  } 
   .container.is-fluid.remove-padding {
     padding-left: 15px;
     padding-right: 0;
   }
   .is-media-margin-l {
-    margin-left: 15px;
+    margin-left: 12px;
+  }
+  .column.action-javascript {
+    padding-right: 0;
+  }
+
+  /*
+  * ---------------------------
+  * is-frozen
+  * ---------------------------
+  */
+  .is-frozen.is-frozen--active {
+    position: fixed; 
+    min-width: calc(100% + 24px);
+  }
+
+  .is-frozen-overlay.overlay--active {
+    align-items: center;
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    top: 52px;
+    background-color: #0a0a13ef;
   }
   /*
   * ---------------------------
@@ -22,8 +51,8 @@
      top: 40px!important;
      left: -999rem!important;
      z-index: 29;
-     min-height: 100vh;
-     height: 100%;
+     max-height: 100vh;
+     //height: 100%;
      min-width: 0px!important;
      width: 0px!important;
      background-color: transparent;
@@ -35,7 +64,7 @@
     animation: slide-in ease-out 0.3s forwards; 
     .aside-menu {
       width: 298px;
-      min-height: 100vh!important;
+      max-height: 100vh!important;
       overflow-y: scroll;
       background-color: $aside_background;
       .aside-mobile-close {
@@ -119,6 +148,14 @@
           }
           .navbar-item.is-tab {
             border-bottom: 0;
+          }
+          .navbar-item.color-not-change {
+            color:  $white !important;
+            &:hover,
+            &:focus,
+            &.is-active {
+              background-color: $primary !important;
+            }
           }
           div.has-dropdown {
               display: block;

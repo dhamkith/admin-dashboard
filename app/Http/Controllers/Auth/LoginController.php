@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use App\Traits\FunctionsTrait;
+use App\Setting;
 
 class LoginController extends Controller
 {
@@ -36,5 +41,41 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+       /**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request ->toDateTimeString() getClientIp() 
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        /**
+         *  user default settings
+         *  @param  $lass_than maximum ip 
+         */
+        $lass_than = 10;
+        FunctionsTrait::lastLoginIps($request, $user, $lass_than);
+
+        /**
+         * check user has default setting table
+         * 
+         */ 
+        Setting::flushCache();
+        if( !Setting::has($user->id) ){
+            // default settings
+            FunctionsTrait::settingUser($user);  
+         } 
+
+    } 
+    /**
+     * Log the user out of the application.
+     */
+    public function userLogout()
+    {
+        Auth::guard('web')->logout(); 
+        return redirect('/');
     }
 }

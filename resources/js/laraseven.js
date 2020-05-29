@@ -16,7 +16,27 @@ import * as func from  './func.js';
     * 
     * helper functions
     */
-
+    function removeIsFrozenActive() {
+        const $removeIsFrozen = func.htmlcToArray(document.getElementsByClassName('is-frozen'));
+        const asideToggleMobile = document.getElementsByClassName('aside-toggle-mobile')[0];
+        const menuToggle = document.getElementsByClassName('menu-toggle')[0]; 
+        const isFrozenOverlay = document.getElementsByClassName('is-frozen-overlay')[0];  
+        if (asideToggleMobile.classList.contains('is-active') || menuToggle.classList.contains('is-active')) { 
+            if (  $removeIsFrozen.length > 0 ) {
+                $removeIsFrozen.forEach( el => {
+                    el.classList.add('is-frozen--active');
+                });
+            }
+            isFrozenOverlay.classList.add('overlay--active');
+        } else {
+            if (  $removeIsFrozen.length > 0 ) {
+                $removeIsFrozen.forEach( el => {
+                    el.classList.remove('is-frozen--active');
+                });
+            } 
+            isFrozenOverlay.classList.remove('overlay--active');
+        }
+    }
     // if left menu open hide it
     function hideLeftMobileMenu() {
         const $isActiveAside = func.htmlcToArray(document.getElementsByClassName('aside-toggle-mobile'));          
@@ -61,7 +81,9 @@ import * as func from  './func.js';
                 // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                 el.classList.toggle('is-active');
                 $target.classList.toggle('is-active');
-    
+
+                // is-frozen
+                removeIsFrozenActive();
  
             });
         });
@@ -85,6 +107,9 @@ import * as func from  './func.js';
 
                 el.classList.toggle('is-active');
                 $target.classList.toggle('aside-open-mobile');
+
+                // is-frozen
+                removeIsFrozenActive();
 
             });
         });
@@ -213,5 +238,29 @@ import * as func from  './func.js';
             }, false);
         });
     }
+
+    /*  
+    *  get user login ips (import function)   
+    */ 
+   const loginIpsmodel = document.getElementById('get-userlogin-ips');
+   if(loginIpsmodel) { 
+       loginIpsmodel.addEventListener('click', () => {
+           func.getUserLoginIps(loginIpsmodel);
+       },false);
+   }
+
+    /*  
+    * login form center
+    */
+    const $loginCutomize =  func.htmlcToArray(document.querySelectorAll('.login-cutomize'));
+    if ($loginCutomize.length > 0) { 
+        $loginCutomize.forEach( el => {
+            if (windowHeight > el.clientHeight) { 
+                var marginTop = (windowHeight - el.clientHeight)/2;
+                el.style = `margin-top: ${marginTop + 16}px !important;`;
+            }
+        });
+    } 
+
 
   })();

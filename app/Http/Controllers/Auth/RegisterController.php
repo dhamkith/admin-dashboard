@@ -9,6 +9,15 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Http\Request;
+use App\Role;
+use App\Admin;
+use App\Traits\FunctionsTrait;
+use App\Notifications\NewUserRegisterNotification;
+use Mail; 
+use App\Mail\NewUserRegister;
+use App\Events\NewUserWelcomeEvent;
+
 class RegisterController extends Controller
 {
     /*
@@ -64,10 +73,56 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+   
+        $user->save();
+        
+        $user->roles()->attach(Role::where('slug', 'user')->first());
+
+        return $user;
+    }
+
+        /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        /**
+         *  attach default Role user 
+         */
+        $user->roles()->attach(Role::where('slug', 'user')->first());
+
+        /**
+         *  user default settings
+         */
+        FunctionsTrait::settingUser($user);
+
+        /* 
+         * notify admin NewUserRegisterNotification 
+         */
+        $admin = Admin::first(); 
+        if ($admin && admin_setting('new_user_notifi')) {
+            $admin->notify(new NewUserRegisterNotification($user));
+        } 
+        
+        /* 
+        * send to user NewUserWelcome email and slack Notifications
+        */
+        event(new NewUserWelcomeEvent( $user));
+
+        /* 
+        * send email to admin NewUserRegister
+        */
+        // if ( admin_setting('new_user_email')) { 
+        //     Mail::to($admin['email'])->send(new NewUserRegister($user));
+        // }
     }
 }

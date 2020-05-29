@@ -90,13 +90,14 @@
 /*!******************************!*\
   !*** ./resources/js/func.js ***!
   \******************************/
-/*! exports provided: getSiblings, htmlcToArray */
+/*! exports provided: getSiblings, htmlcToArray, getUserLoginIps */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSiblings", function() { return getSiblings; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "htmlcToArray", function() { return htmlcToArray; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUserLoginIps", function() { return getUserLoginIps; });
 var baseUrl = location.protocol + '//' + location.host;
 var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -119,6 +120,99 @@ var publicFunc = {
   },
   htmlcToArray: function htmlcToArray(htmlCollection) {
     return Array.prototype.slice.call(htmlCollection, 0);
+  },
+
+  /* 
+  * 
+  * get user login ids, helper function
+  *
+  */
+  getUserLoginIps: function getUserLoginIps(el) {
+    var _this = this;
+
+    var userId = el.dataset.userid;
+    var frag = document.createDocumentFragment();
+    var appendElem = document.getElementById('append-modal');
+    appendElem.innerHTML = '';
+    axios.post("".concat(baseUrl, "/manage/api/user-id=").concat(userId, "/ips")).then(function (response) {
+      var arrayData = response.data;
+
+      _this.appendModel(frag, arrayData);
+
+      appendElem.appendChild(frag);
+
+      var $modalClose = _this.htmlcToArray(document.querySelectorAll('.m-close'));
+
+      if ($modalClose.length > 0) {
+        $modalClose.forEach(function (el) {
+          _this.modelCloseEvent(el);
+        });
+      }
+    })["catch"](function (_ref) {
+      var response = _ref.response;
+      console.log(response);
+    });
+  },
+
+  /* 
+  * 
+  * append model fragment
+  *
+  */
+  appendModel: function appendModel(frag, arrayData) {
+    var fragLi = document.createDocumentFragment();
+    arrayData.forEach(function (el) {
+      var li = document.createElement('li');
+      li.className = 'ip-list';
+      var loginData = document.createTextNode("".concat(el.time, " --- Ip: ").concat(el.ip));
+      li.appendChild(loginData);
+      fragLi.appendChild(li);
+    });
+    var div1 = document.createElement('div');
+    div1.id = 'is-active';
+    div1.className = 'modal is-active';
+    div1.style = "z-index: 9999;";
+    var div2 = document.createElement('div');
+    div2.className = 'modal-background';
+    var div3 = document.createElement('div');
+    div3.className = 'modal-card slide-down';
+    var header = document.createElement('header');
+    header.className = 'modal-card-head';
+    var button1 = document.createElement('a');
+    button1.className = 'delete is-danger m-close';
+    button1.setAttribute('aria-label', "close");
+    header.appendChild(button1);
+    var section = document.createElement('section');
+    section.className = 'modal-card-body';
+    section.appendChild(fragLi);
+    var footer = document.createElement('footer');
+    footer.className = 'modal-card-foot';
+    var cancel = document.createTextNode('close');
+    var button2 = document.createElement('a');
+    button2.className = 'button cancel is-danger is-outlined m-close';
+    button2.appendChild(cancel);
+    footer.appendChild(button2);
+    div3.appendChild(footer);
+    div3.insertBefore(section, footer);
+    div3.insertBefore(header, section);
+    div1.appendChild(div3);
+    div1.insertBefore(div2, div3);
+    frag.appendChild(div1);
+  },
+
+  /*
+  *
+  * modelCloseEvent function
+  * 
+  */
+  modelCloseEvent: function modelCloseEvent(elem) {
+    elem.addEventListener('click', function () {
+      var isActive = document.getElementById('is-active');
+
+      if (isActive.classList.contains('is-active')) {
+        isActive.classList.remove('is-active');
+      }
+    }, false);
   }
 };
 function getSiblings(el) {
@@ -127,6 +221,10 @@ function getSiblings(el) {
 ;
 function htmlcToArray(htmlCollection) {
   return publicFunc.htmlcToArray(htmlCollection);
+}
+;
+function getUserLoginIps(el) {
+  return publicFunc.getUserLoginIps(el);
 }
 ;
 
@@ -153,7 +251,32 @@ __webpack_require__.r(__webpack_exports__);
   * 
   * helper functions
   */
-  // if left menu open hide it
+
+  function removeIsFrozenActive() {
+    var $removeIsFrozen = _func_js__WEBPACK_IMPORTED_MODULE_0__["htmlcToArray"](document.getElementsByClassName('is-frozen'));
+    var asideToggleMobile = document.getElementsByClassName('aside-toggle-mobile')[0];
+    var menuToggle = document.getElementsByClassName('menu-toggle')[0];
+    var isFrozenOverlay = document.getElementsByClassName('is-frozen-overlay')[0];
+
+    if (asideToggleMobile.classList.contains('is-active') || menuToggle.classList.contains('is-active')) {
+      if ($removeIsFrozen.length > 0) {
+        $removeIsFrozen.forEach(function (el) {
+          el.classList.add('is-frozen--active');
+        });
+      }
+
+      isFrozenOverlay.classList.add('overlay--active');
+    } else {
+      if ($removeIsFrozen.length > 0) {
+        $removeIsFrozen.forEach(function (el) {
+          el.classList.remove('is-frozen--active');
+        });
+      }
+
+      isFrozenOverlay.classList.remove('overlay--active');
+    }
+  } // if left menu open hide it
+
 
   function hideLeftMobileMenu() {
     var $isActiveAside = _func_js__WEBPACK_IMPORTED_MODULE_0__["htmlcToArray"](document.getElementsByClassName('aside-toggle-mobile'));
@@ -192,7 +315,9 @@ __webpack_require__.r(__webpack_exports__);
         var $target = document.getElementById(target); // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
 
         el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
+        $target.classList.toggle('is-active'); // is-frozen
+
+        removeIsFrozenActive();
       });
     });
   } // is-mobile  "aside-toggle-mobile" aside toggle
@@ -210,7 +335,9 @@ __webpack_require__.r(__webpack_exports__);
         var target = el.dataset.target;
         var $target = document.getElementsByClassName(target)[0];
         el.classList.toggle('is-active');
-        $target.classList.toggle('aside-open-mobile');
+        $target.classList.toggle('aside-open-mobile'); // is-frozen
+
+        removeIsFrozenActive();
       });
     });
   } // Get all "has-dropdown-mobile" elements
@@ -326,6 +453,33 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       }, false);
+    });
+  }
+  /*  
+  *  get user login ips (import function)   
+  */
+
+
+  var loginIpsmodel = document.getElementById('get-userlogin-ips');
+
+  if (loginIpsmodel) {
+    loginIpsmodel.addEventListener('click', function () {
+      _func_js__WEBPACK_IMPORTED_MODULE_0__["getUserLoginIps"](loginIpsmodel);
+    }, false);
+  }
+  /*  
+  * login form center
+  */
+
+
+  var $loginCutomize = _func_js__WEBPACK_IMPORTED_MODULE_0__["htmlcToArray"](document.querySelectorAll('.login-cutomize'));
+
+  if ($loginCutomize.length > 0) {
+    $loginCutomize.forEach(function (el) {
+      if (windowHeight > el.clientHeight) {
+        var marginTop = (windowHeight - el.clientHeight) / 2;
+        el.style = "margin-top: ".concat(marginTop + 16, "px !important;");
+      }
     });
   }
 })();

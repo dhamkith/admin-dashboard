@@ -1,22 +1,23 @@
 @extends('layouts.admin_dash')
 
 @section('content')
-<div class="column is-media-margin-l">
+<div class="column is-media-margin-l cf">
 
-    <div class="column is-full-desktop is-full-tablet is-full-mobile box-shadow float-l">
-      <div class=" ">
+    <div class="column is-full-desktop is-full-tablet is-full-mobile box-shadow  box-back-color float-l">
+      <div class="p-20">
         <p class="is-size-4">Admin settings</p>
         <small>admin user settings</small>
+        @include('partials.massages')
       </div>
     </div>
 
-    <div class="lists-wrapper column is-full-desktop is-full-tablet is-full-mobile float-l">
+    <div class="lists-wrapper column is-full-desktop is-full-tablet is-full-mobile box-back-color float-l">
       
       <div class="columns is-multiline is-touch">
         <div class="column custom-tile">
             
-            <form method="post" action="#" class="admin-setting" role="form"  enctype="multipart/form-data">
-              
+            <form method="post" action="{{ route('admin.settings.store') }}" class="admin-setting" role="form"  enctype="multipart/form-data">
+                {!! csrf_field() !!}
               
               @if(count(config('admin_setting_fields', [])) )
 
@@ -38,7 +39,7 @@
 
                 <div class="field m-t-20">
                     <div class="control">
-                        <button type="submit" class="button is-primary round-btn">Save Settings <i class="fa fa-save"></i></button>
+                        <button type="submit" class="button is-primary round-btn m-l-15">Save Settings <i class="fa fa-save"></i></button>
                     </div>
                 </div>
 

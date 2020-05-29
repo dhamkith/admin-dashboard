@@ -1,5 +1,6 @@
 .admin-contant {
   padding-left: 0;
+  background-color: whitesmoke;
 }
 
 .admin-navbar {
@@ -38,6 +39,14 @@
           &:hover {
             color: $white !important;
             background-color: transparent !important;
+          }
+        }
+        .navbar-item.color-not-change {
+          color:  $white !important;
+          &:hover,
+          &:focus,
+          &.is-active {
+            background-color: $primary !important;
           }
         }
         .navbar-item.has-dropdown { 
